@@ -17,11 +17,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\Todo\" />
+    <ProjectReference Include="..\BddTodo.Data\BddTodo.Data.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\BddTodo.Data\BddTodo.Data.csproj" />
+    <Folder Include="Controllers\TodoLists\Commands\" />
+    <Folder Include="Controllers\TodoLists\_BusinessRules\" />
   </ItemGroup>
 
 </Project>

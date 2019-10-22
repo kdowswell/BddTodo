@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BddTodo.Data.Models.Todos;
 using BddTodo.Data.Models.Users;
 using BddTodo.Data.Models.Users.ManyToMany;
 using BddTodo.Data.Models.Users.Reference;
@@ -61,5 +62,8 @@ namespace BddTodo.Data
         public DbSet<UserRole> UserRole { get; set; }
         public DbSet<UserRoles> UserRoles { get; set; }
 
+
+        public DbSet<TodoList> TodoList { get; set; }
+        public DbSet<Todo> Todo { get; set; }
     }
 }

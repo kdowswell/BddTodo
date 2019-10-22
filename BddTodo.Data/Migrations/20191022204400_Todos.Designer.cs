@@ -4,14 +4,16 @@ using BddTodo.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BddTodo.Data.Migrations
 {
     [DbContext(typeof(BddTodoDbContext))]
-    partial class BddTodoDbContextModelSnapshot : ModelSnapshot
+    [Migration("20191022204400_Todos")]
+    partial class Todos
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -29,39 +31,14 @@ namespace BddTodo.Data.Migrations
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("TodoListId")
-                        .HasColumnType("int");
-
                     b.Property<int>("UserId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("TodoListId");
 
                     b.HasIndex("UserId");
 
                     b.ToTable("Todo");
-                });
-
-            modelBuilder.Entity("BddTodo.Data.Models.Todos.TodoList", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Title")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("TodoList");
                 });
 
             modelBuilder.Entity("BddTodo.Data.Models.Users.ManyToMany.UserRoles", b =>
@@ -170,21 +147,6 @@ namespace BddTodo.Data.Migrations
                 });
 
             modelBuilder.Entity("BddTodo.Data.Models.Todos.Todo", b =>
-                {
-                    b.HasOne("BddTodo.Data.Models.Todos.TodoList", "TodoList")
-                        .WithMany("Todo")
-                        .HasForeignKey("TodoListId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("BddTodo.Data.Models.Users.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("BddTodo.Data.Models.Todos.TodoList", b =>
                 {
                     b.HasOne("BddTodo.Data.Models.Users.User", "User")
                         .WithMany()
