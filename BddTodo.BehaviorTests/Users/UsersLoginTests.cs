@@ -16,7 +16,7 @@ namespace BddTodo.BehaviorTests.Users
 {
 
     [Story(
-        AsA = "As an unauthenticated user",
+        AsA = "As a new user",
         IWant = "I want to login",
         SoThat = "so that i can manage my todo lists")]
     [TestFixture]

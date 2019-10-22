@@ -15,9 +15,9 @@ namespace BddTodo.BehaviorTests.Users
 {
 
     [Story(
-        AsA = "As an unauthenticated user",
+        AsA = "As a new user",
         IWant = "I want to register",
-        SoThat = "so that i can manage my todo lists")]
+        SoThat = "So that i can manage my todo lists")]
     [TestFixture]
     public class UserRegistersForANewAccount : BaseTest
     {
@@ -86,7 +86,7 @@ namespace BddTodo.BehaviorTests.Users
 
         void IWillBeLoggedIn()
         {
-
+            // TODO: Call authenticated endpoint
         }
 
         void IForgetToProvideMyFirstName()
@@ -98,7 +98,6 @@ namespace BddTodo.BehaviorTests.Users
         {
             _badRequestResult.errors.ShouldContain(x=> x.Key == "FirstName");
         }
-
 
     }
 

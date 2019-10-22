@@ -11,18 +11,18 @@ using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using NUnit.Framework;
 using Respawn;
-using BddTodo.Controllers.Users.Authenticate.Commands;
-using BddTodo.Data;
 using BddTodo.Tests._Infrastructure;
 using BddTodo.Tests._Infrastructure.Extensions;
 using System.IO;
 using Microsoft.Extensions.Configuration;
+using BddTodo.Data;
+using BddTodo.Controllers.Users.Authenticate.Commands;
+using TechTalk.SpecFlow;
 
 namespace BddTodo.Tests
 {
     public class BaseTest
     {
-       
         public static readonly Checkpoint Checkpoint = new Checkpoint
         {
             SchemasToExclude = new[]
@@ -41,27 +41,16 @@ namespace BddTodo.Tests
         private FakeOAuthAuthenticationResponse _authenticationResult;
         private string _jwt;
 
-        [SetUp]
-        public async Task SetUp()
+        [BeforeScenario]
+        public void BeforeScenario()
         {
             try
             {
                 if (DatabaseHelpers.ConnString.ToLower().Contains("test"))
                 {
-                    await Checkpoint.Reset(DatabaseHelpers.ConnString);
+                    Checkpoint.Reset(DatabaseHelpers.ConnString);
                 }
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-            }
-        }
 
-        [OneTimeSetUp]
-        public async Task OneTimeSetUp()
-        {
-            try
-            {
                 SetUpBddTodoDbContext();
                 SetUpTestServer();
             }

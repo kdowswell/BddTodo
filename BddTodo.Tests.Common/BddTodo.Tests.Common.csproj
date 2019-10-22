@@ -2,21 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.0</TargetFramework>
-
-    <IsPackable>false</IsPackable>
   </PropertyGroup>
-
-  <ItemGroup>
-    <None Remove="appsettings.json" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="appsettings.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="nunit" Version="3.12.0" />
@@ -29,13 +15,27 @@
     <PackageReference Include="Respawn" Version="3.1.0" />
     <PackageReference Include="Shouldly" Version="3.0.2" />
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.6.0" />
-    <PackageReference Include="TestStack.BDDfy" Version="4.3.2" />
   </ItemGroup>
+
 
   <ItemGroup>
     <ProjectReference Include="..\BddTodo.Data\BddTodo.Data.csproj" />
-    <ProjectReference Include="..\BddTodo.Tests.Common\BddTodo.Tests.Common.csproj" />
     <ProjectReference Include="..\BddTodo\BddTodo.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="_Infrastructure\Builders\ModelBuilders.cs">
+      <DependentUpon>ModelBuilders.tt</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="_Infrastructure\Builders\ModelBuilders.tt">
+      <LastGenOutput>ModelBuilders.cs</LastGenOutput>
+      <Generator>TextTemplatingFileGenerator</Generator>
+    </None>
   </ItemGroup>
 
   <ItemGroup>
